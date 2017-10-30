@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+int modexp(int x,unsigned int y,int p);
+bool isprime(int n);
+
+int main()
+{
+  cout <<isprime(110);
+}
+
+int modexp(int x,unsigned int y, int p)
+{
+  int res = 1;
+  x = (res*x) % p;
+  
+  while(y>0)
+  {
+    if( y & 1)
+      res = (res*x) % p;
+    y >>= 1;
+    x = (x*x) % p;
+  }
+  
+  return res;
+}
+
+
+bool isprime(int n)
+{
+  if(n<=1 || n == 4) {return false;}
+  if(n<=3) {return true;}
+  
+  int a = 1+(rand()%n);
+  
+  int k = 3;
+  while(k > 0)
+  {
+    if(modexp(a,n-1,n) != 1)
+    {
+      return false;
+    }
+    k--;
+  }
+  
+  return true;
+  
+}
